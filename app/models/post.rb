@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
     validates :title
     validates :content
-    validates :votes
+    validates :upvotes
    
     belongs_to :user
 end

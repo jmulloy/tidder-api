@@ -24,13 +24,16 @@ class PostsController < ApplicationController
         if @post.update(post_params)
             render json: @post
         else
-            render :json { message: @post.errors}, status: 400
+            render json: { message: @post.errors }, status: 400
+        end
     end
+   
     def destroy 
         if @post.destroy(post_params)
             render json: Post.all, status:204
         else
-            render :json { message: "Couldnt Delete the POST"}, status: 400
+            render json: { message: "Couldnt Delete the POST" }, status: 400
+        end
     end
 
     def post_params
