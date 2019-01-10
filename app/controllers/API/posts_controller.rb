@@ -1,7 +1,5 @@
-class PostsController < ApplicationController
-    def set_post 
-        @post = Post,find_by(id: params[:id])
-    end
+class Api::PostsController < ApplicationController
+    before_action :set_post, only: [:show, :update, :destroy]
 
     def index 
         render json: Post.all
@@ -36,8 +34,14 @@ class PostsController < ApplicationController
         end
     end
 
+    private
+
     def post_params
-        params.require(:post).permit(:title, :content, :upvotes)
+        params.require(:post).permit(:title, :content, :votes)
+    end
+
+    def set_post 
+        @post = Post.find_by(id: params[:id])
     end
 
 end
