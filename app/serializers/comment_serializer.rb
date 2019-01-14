@@ -1,4 +1,4 @@
 class CommentSerializer < ActiveModel::Serializer
-    attributes :id, :content
-    has_many :posts
+    attributes :id, :content, :post_id, :author
+    # has_many :posts
   end
