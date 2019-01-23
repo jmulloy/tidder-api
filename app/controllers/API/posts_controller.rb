@@ -22,7 +22,7 @@ class Api::PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :content, :comment_id, :author)
+        params.require(:post).permit(:title, :content, :author)
     end
 
     def set_post 
