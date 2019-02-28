@@ -7,11 +7,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins %w[
-      localhost:3000
-      http://tidder-client.herokuapp.com
-      https://tidder-client.herokuapp.com
-    ]
+    origins 'localhost:3000', 'http://tidder-client.herokuapp.com', 'https://tidder-client.herokuapp.com'
+    
     resource '*',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
