@@ -1,32 +1,35 @@
-class Api::PostsController < ApplicationController
-    before_action :set_post, only: [:show]
+module Api
 
-    def index 
-        render json: Post.all
-    end
+    class PostsController < ApplicationController
+        before_action :set_post, only: [:show]
 
-    def show
-        render json: @post
-    end
-
-    def create 
-        post = Post.new(post_params)
-        if post.save
-            render json: post 
-        else 
-            render json: {message: post.errors }, status: 400
+        def index 
+            render json: Post.all
         end
+
+        def show
+            render json: @post
+        end
+
+        def create 
+            post = Post.new(post_params)
+            if post.save
+                render json: post 
+            else 
+                render json: {message: post.errors }, status: 400
+            end
+        end
+
+
+        private
+
+        def post_params
+            params.require(:post).permit(:title, :content, :author)
+        end
+
+        def set_post 
+            @post = Post.find_by(id: params[:id])
+        end
+
     end
-
-
-    private
-
-    def post_params
-        params.require(:post).permit(:title, :content, :author)
-    end
-
-    def set_post 
-        @post = Post.find_by(id: params[:id])
-    end
-
 end
