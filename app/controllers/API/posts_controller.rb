@@ -22,7 +22,7 @@ module Api
 
         def update 
             if @post.update(post_params)
-                render json: post
+                render json: @post
             else
                 render json: {message: post.errors }, status: 400
             end
