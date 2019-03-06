@@ -25,6 +25,7 @@ module Api
                 render json: post
             else
                 render json: {message: post.errors }, status: 400
+            end
         end
 
 
